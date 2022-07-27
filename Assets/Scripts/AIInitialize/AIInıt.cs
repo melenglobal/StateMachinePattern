@@ -7,26 +7,28 @@ namespace AIInitialize
 {
     public class AIInıt : MonoBehaviour
     {
-        NavMeshAgent Agent;
+        NavMeshAgent _agent;
         Animator anim;
-        public Transform Gold;
-        WorkerAI currentState;
+        public Transform gold;
+        WorkerAI _currentState;
         
         public int currentScore;
-
-        // Start is called before the first frame update
-        void Start()
+        
+        private void Awake()
         {
-            Agent = this.GetComponent<NavMeshAgent>();
-            anim = this.GetComponent<Animator>();
-            currentState = new Idle(gameObject, Gold, anim, Agent,currentScore);
+            _agent = GetComponent<NavMeshAgent>();
+            
+            anim = GetComponent<Animator>();
+            
+            _currentState = new Idle(gameObject, gold, anim, _agent,currentScore);
         
         }
-
-        // Update is called once per frame
-        void Update()
+        
+        private void Update()
         {
-            currentState = currentState.Process();
+            _currentState = _currentState.Process();
+            
+            Debug.Log(_currentState);
 
         }
     }

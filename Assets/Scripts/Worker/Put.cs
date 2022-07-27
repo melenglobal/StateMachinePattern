@@ -1,16 +1,18 @@
-﻿using TMPro;
+﻿using Enums;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityTemplateProjects;
+using UnityTemplateProjects.Worker;
 
 namespace Worker
 {
     public class Put : WorkerAI
     {   
-        int previousScore;
+        private int previousScore;
         public Put(GameObject _worker, Transform _gold, Animator _anim, NavMeshAgent _agent,int _currentScore) : base(_worker, _gold, _anim, _agent,_currentScore)
         {
-            
+            name = STATE.PUT;
         }
 
         
@@ -19,10 +21,11 @@ namespace Worker
             Debug.Log("PUT ENTER");
             
             previousScore = currentScore;
-            Debug.Log(currentScore);
-            Debug.Log(previousScore);
+    
             currentScore += 1 ;
+            
             Worker.transform.GetChild(0).GetComponent<TextMeshPro>().text = currentScore.ToString();
+            
             base.Enter();
         }
 
@@ -31,20 +34,19 @@ namespace Worker
             if (currentScore > previousScore)
             {
                 nextState = new Idle(Worker, Gold, anim, Agent,currentScore);
-                stage = EVENT.EXIT;
+                
+                stage = EVENT.Exit;
+                
                 Gold.gameObject.SetActive(true);
-                
-                Debug.Log("Dağlar ardinda");
-                
-                 currentScore = previousScore;
-                Debug.Log(currentScore);
+
+                currentScore = previousScore;
+
             }
             
         }
 
         protected override void Exit()
         {
-            //Anim reset
             base.Exit();
         }
     }

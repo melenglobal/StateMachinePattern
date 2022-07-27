@@ -1,3 +1,4 @@
+using Enums;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityTemplateProjects;
@@ -33,39 +34,39 @@ namespace Worker
             Gold = _gold;
             anim = _anim;
             Agent = _agent;
-            stage = EVENT.ENTER;
+            stage = EVENT.Enter;
             currentScore = _currentScore;
         }
         
 
         protected virtual void Enter()
         {
-            stage = EVENT.UPDATE;
+            stage = EVENT.Update;
         }
 
         protected virtual void Update()
         {
-            stage = EVENT.UPDATE;
+            stage = EVENT.Update;
         }
 
         protected virtual void Exit()
         {
-            stage = EVENT.EXIT;
+            stage = EVENT.Exit;
         }
 
         public WorkerAI Process()
         {
-            if (stage == EVENT.ENTER)
+            if (stage == EVENT.Enter)
             {
                 Enter();
             }
         
-            if (stage == EVENT.UPDATE)
+            if (stage == EVENT.Update)
             {
                 Update();
             }
 
-            if (stage == EVENT.EXIT)
+            if (stage == EVENT.Exit)
             {
                 Exit();    
                 return nextState;
@@ -77,6 +78,7 @@ namespace Worker
         public bool CanSeeGold()
         {
             Vector3 direction = Gold.position - Worker.transform.position;
+            
             float angle = Vector3.Angle(direction, Worker.transform.forward);
 
             if (direction.magnitude < visibleDistance&& angle < visibleAngle)

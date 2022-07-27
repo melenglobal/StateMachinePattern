@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-
 namespace Worker
 {
     public class Take: WorkerAI
@@ -28,5 +27,6 @@ namespace Worker
             //Anim reset
             base.Exit();
         }
+        
     }
 }

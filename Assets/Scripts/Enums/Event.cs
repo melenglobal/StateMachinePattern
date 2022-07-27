@@ -1,9 +1,9 @@
-﻿namespace UnityTemplateProjects
+﻿namespace Enums
 {
     public enum EVENT
     {
-        ENTER,
-        UPDATE,
-        EXIT
+        Enter,
+        Update,
+        Exit
     }
 }

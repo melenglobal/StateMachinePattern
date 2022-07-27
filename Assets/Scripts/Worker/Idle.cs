@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using Enums;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityTemplateProjects;
+using UnityTemplateProjects.Worker;
 
 namespace Worker
 {
@@ -8,7 +10,7 @@ namespace Worker
     {
         public Idle(GameObject _worker, Transform _gold, Animator _anim, NavMeshAgent _agent,int _currentScore) : base(_worker, _gold, _anim, _agent,_currentScore)
         {
-            
+            name = STATE.IDLE;
         }
         
         protected override void Enter()
@@ -21,7 +23,7 @@ namespace Worker
         {
             
             nextState = new Search(Worker,Gold,anim,Agent,currentScore);
-            stage = EVENT.EXIT;
+            stage = EVENT.Exit;
             
         }
 

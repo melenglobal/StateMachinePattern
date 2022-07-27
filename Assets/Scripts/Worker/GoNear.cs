@@ -1,8 +1,8 @@
-﻿using CheckPoints;
+﻿using Enums;
 using UnityEngine;
 using UnityEngine.AI;
-using CheckPoints;
 using UnityTemplateProjects;
+using UnityTemplateProjects.Worker;
 
 namespace Worker
 {
@@ -11,11 +11,11 @@ namespace Worker
         
         public GoNear(GameObject _worker, Transform _gold, Animator _anim, NavMeshAgent _agent,int _currentScore) : base(_worker, _gold, _anim, _agent,_currentScore)
         {
-            
+            name = STATE.GONEAR;
         }
         protected override void Enter()
         {   
-
+            Debug.Log("GONEAR ENTER");
             base.Enter();
         }
 
@@ -26,7 +26,8 @@ namespace Worker
             if (!Gold.gameObject.activeInHierarchy)
             {
                 nextState = new Carry(Worker, Gold, anim, Agent,currentScore);
-                stage = EVENT.EXIT;
+                
+                stage = EVENT.Exit;
             }
         }
 
